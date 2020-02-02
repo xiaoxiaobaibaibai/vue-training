@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!-- <div v-if="show === 'a'">{{message}}</div>
+        <div v-else-if="show === 'b'">Bye World</div>
+        <div v-else>Hello Man</div>
+        <div v-show="show">{{message}}</div> -->
+        <!-- <div v-if="show">
+            用户名: <input :key="1"/>
+        </div>
+        <div v-else>
+            邮箱名: <input :key="2"/>
+        </div> -->
+       <!-- <template v-for="(item,index) of list" :key="item.id">
+            <div>
+            {{item.text}} --- {{index}};
+            </div>
+            <span>
+            {{item.text}}
+            </span>
+        </template> -->
+        <div v-for="(item,key,index) of userInfo">
+            {{item}} -- {{key}} -- {{index}}
+        </div>
+        
+    </div>
+
+ 
+    <script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            show:false,
+            message: "Hello World",
+            // list: [{  id: 202001,
+            //         text: "Hello"},
+            //         { id: 2020002,
+            //         text:"new"},
+            //         { id: 2020003,
+            //         text: "job"}]
+            userInfo: {
+                name: "byq",
+                age: 23,
+                gender: "male",
+                salary: "secret"
+            }
+        }
+    })
+    </script>
+</body>
+</html>

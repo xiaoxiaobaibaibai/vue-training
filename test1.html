@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue实例</title>
+    <script src="./vue.js"></script>
+    <style>
+     .activated {
+         color: royalblue;
+     }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- <div @click="handleClick">
+            {{message}} 
+
+        </div>-->
+        <item></item>
+        <!-- <div v-text="name + 'Lee'"></div>
+        <div v-html="name"></div> -->
+
+        <div @click="handleDivClick"
+             :class="{activated: isActivated}">
+             <!-- :class="[activated]" -->
+            {{fullName}}
+        </div>
+
+        <div :style="styleObj" @click="handleDivClick2">
+            Hello World!
+        </div>
+
+    </div>
+
+
+    <script>
+        Vue.component('item', {
+            template: '<div>Hello man</div>'
+        })
+
+        var vm = new Vue({
+          el: '#root',
+          data: {
+              message: 'Hello World',
+              name: "<h1>name</h1>",
+              firstName: "Bai",
+              lastName: "yongqian",
+              age: 28,
+              fullName: "Bai yongqian",
+              isActivated: false,
+              styleObj: {
+                  color: ""
+              }
+          },
+
+        //   watch: {
+        //       firstName: function() {
+        //           this.fullName = this.firstName + " " + this.lastName;
+        //       },
+        //       lastName: function() {
+        //           this.fullName = this.firstName + " " + this.lastName;
+        //       }
+        //   },
+          methods: {
+              
+            handleClick: function() {
+                alert("hello")
+            },
+            handleDivClick: function() {
+
+                this.isActivated = !this.isActivated;
+          },
+          handleDivClick2: function() {
+              this.styleObj.color = this.styleObj.color === "black"
+              ? "red" : "balck";
+          
+          }},
+          
+        //   computed: {
+        //     //   fullName: function() {
+        //     //       return this.firstName + " " + this.lastName;
+        //     //   }
+
+        //     fullName: {
+        //         get: function() {
+        //             return this.firstName + " " + this.lastName;
+        //         },
+        //         set: function(value) {
+        //             var arr = value.split(" ");
+        //             this.firstName = arr[0];
+        //             this.lastName = arr[1];
+        //             console.lastName(value);
+        //         }
+
+        //     }}
+          
+
+
+      })
+    </script>
+</body>
+</html>

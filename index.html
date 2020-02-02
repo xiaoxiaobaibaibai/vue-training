@@ -15,8 +15,8 @@
             <!-- <li>Coding test</li>
             <li>Reading book</li> -->
             <!-- <li v-for = "item in list">{{item}}</li> -->
-            <todo-item v-bind:content="item" 
-                       v-bind:index="index"
+            <todo-item :content="item" 
+                       :index="index"
                        v-for="(item,index) in list"
                        @delete="handleItemDelete">
             </todo-item>
@@ -57,7 +57,7 @@
             },
             handleItemDelete: function(index) {
                 this.list.splice(index,1);
-                alert(index);
+                //alert(index);
             }
 
         }
