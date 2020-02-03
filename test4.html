@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <counter :count="0" @change="handleIncrease"></counter>
+        <counter :count="1" @change="handleIncrease"></counter>
+        <div>{{total}}</div>
+    </div>
+
+
+
+    <script>
+        const counter = {
+            props: ['count'],
+            data: function() {
+                return {
+                    number: this.count
+                }
+            },
+            template: '<div @click="handleClick">{{number}}</div>',
+            methods: {
+                handleClick: function() {
+                    //alert('hahah');
+                    this.number ++;
+                    this.$emit('change',1)
+                   
+
+                }
+                
+            }
+        }
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                total: 5
+            },
+            components: {
+                counter: counter
+            },
+            methods: {
+                handleIncrease: function(step) {
+                    //alert('shsh')
+                   
+                    this.total += step               
+                 }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <child content="Hello World"></child> -->
+        <child @click="handleClick"></child>
+        <child @click.native="handleClick"></child>
+
+    </div>
+
+    <script>
+        Vue.component('child',{
+            // props: ['content'],
+            //props: {
+                // content: [String,Number]
+                //content: {
+                   //type: String,
+                    // required: false,
+                    // default: 'default value'
+                   // validator: function(value) {
+                       // return (value.length > 5)
+
+                   // }
+                //}
+           // },
+            template: '<div @click="handleChildClick">Child</div>',
+            methods: {
+                handleChildClick: function() {
+                    //alert('child click')
+                    this.$emit('click')
+                }
+            },
+        })
+    
+    const vm = new Vue({
+        el: '#root',
+        methods: {
+            handleClick: function() {
+                alert('click')
+            }
+        }
+    })
+    </script>
+</body>
+</html>

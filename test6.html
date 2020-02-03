@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello world</title>
+    <script src='./vue.js'></script>
+</head>
+<body>
+    <div id = "app">
+        <child content="Dell"></child>
+        <child content="Lee"></child>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+    // const dom = document.getElementById('app');
+    // dom.innerHTML = 'Hello';
+
+    Vue.prototype.bus = new Vue()
+    Vue.component('child', {
+        data: function() {
+            return {
+                selfcontent: this.content
+            }
+        },
+        props: {
+            content: String
+        },
+        template: '<div @click="handleClick">{{selfcontent}}</div>',
+        
+        methods: {
+            handleClick: function() {
+                this.bus.$emit('change',this.selfcontent)
+            }
+        },
+        mounted: function() {
+            const this_ = this
+            this.bus.$on('change',function(msg) {
+                this_.selfcontent = msg
+
+            })
+        }
+
+    })
+
+    const vm = new Vue({
+        el: '#app',
+        
+    })
+
+    </script>
+</body>
+</html>
